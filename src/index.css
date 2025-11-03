@@ -15,3 +15,7 @@ body {
   align-items: center; /* Centraliza a caixa de login horizontalmente */
   padding-top: 60px; /* Espaço para respirar abaixo da navbar */
 }
+
+html {
+  font-size: 62.5%; /* Esta é a nossa base 100% (1rem = 10px) */
+}

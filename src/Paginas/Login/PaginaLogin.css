@@ -1,22 +1,17 @@
+/*
+ * Versão refatorada para REM
+ * Base de cálculo: 1rem = 10px (definido no index.css)
+ */
 
 .login-caixa {
-  background-color: #1C1C1C; 
+  background-color: #1c1c1c; 
   border-radius: 8px; 
-  padding: 40px; 
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); 
+  padding: 20px 40px; /* 40px */
+  box-shadow: 0 0.8rem 3rem rgba(0, 0, 0, 0.6); 
   text-align: center; 
-  width: 480px;     /* Define a largura que queremos */
-  max-width: 100%;  /* Garante que em telas menores (celular) ele encolha */
-  box-sizing: border-box; /* Adicione isso para o padding não quebrar o layout */
-}
-/* Opcional: Estilo para um logo, se você quiser adicionar */
-.logo-pryce { /* Vamos simular com um texto por enquanto */
-  color: #FCD535; /* Dourado da Binance */
-  font-size: 2.2em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  margin-left: 0;
-  display: flex; /* Para o margin-bottom funcionar */
+  width: 420px; /* 480px */
+  max-width: 100%;
+  box-sizing: border-box; 
 }
 
 .logo-bem {
@@ -24,88 +19,87 @@
 }
 
 .login-caixa h2 {
-  color: #EAECEF; /* Cor do texto "Bem-vindo" */
-  font-size: 1.5em; /* Tamanho maior para o título */
-  font-weight: 600; /* Mais negrito */
-  margin-bottom: 40px; /* Mais espaço abaixo do título */
+  color: #EAECEF;
+  font-size: 2.4rem; /* 1.5em @ 16px = 24px */
+  font-weight: 600; 
+  margin-bottom: 4rem; /* 40px */
 }
 
 .form-grupo {
-  margin-bottom: 20px; /* Espaço entre os campos */
-  text-align: left; /* Alinha labels à esquerda */
+  margin-bottom: 2rem; /* 20px */
+  text-align: left;
 }
 
 .form-grupo label {
   display: block;
-  margin-bottom: 8px;
-  color: #848E9C; /* Cor do label */
-  font-size: 0.9em;
+  margin-bottom: 0.8rem; /* 8px */
+  color: #848E9C; 
+  font-size: 1.4rem; /* 0.9em @ 16px = 14.4px */
 }
 
 .form-grupo input {
   width: 100%;
-  padding: 16px 12px; /* Mais padding interno */
+  padding: 10px 9px; /* 16px 12px */
   box-sizing: border-box;
-  background-color: #2B2B2B; /* Fundo do input */
-  border: 1px solid #2B2B2B; /* Sem borda visível, a não ser no focus */
-  border-radius: 4px; /* Cantos arredondados */
-  color: #EAECEF; /* Cor do texto digitado */
-  font-size: 1em;
-  transition: border-color 0.3s ease; /* Transição para a borda */
+  background-color: #2B2B2B; 
+  border: 1px solid #2B2B2B;
+  border-radius: 4px; 
+  color: #EAECEF; 
+  font-size: 1.6rem; /* 1em @ 16px = 16px */
+  transition: border-color 0.3s ease;
 }
 
-.form-grupo input::placeholder { /* Estilo do texto placeholder */
+.form-grupo input::placeholder {
   color: #848E9C; 
-  opacity: 0.7; /* Um pouco transparente */
+  opacity: 0.7;
 }
 
 .form-grupo input:focus {
-  border-color: #FCD535; /* Borda dourada no focus */
+  border-color: #FCD535;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(252, 213, 53, 0.2); /* Sombra levemente dourada */
+  box-shadow: 0 0 0 2px rgba(252, 213, 53, 0.2);
 }
 
-/* Checkbox (opcional, se for usar) */
 .form-checkbox {
   display: flex;
-  margin-bottom: 30px;
-  font-size: 0.9em;
+  margin-bottom: 30px; /* 30px */
+  font-size: 1.3em; /* 0.8em @ 16px = 12.8px */
   color: #848E9C;
 }
 
 .form-checkbox input[type="checkbox"] {
-  margin-right: 15px;
-  /* Personalizar o checkbox pode ser mais complexo com CSS */
+  margin-right: 10px; /* 15px */
+  margin-top: 1px;
 }
 
-.botao-primario { /* Renomeei para ser mais genérico */
+.botao-primario {
   width: 100%;
-  padding: 16px;
-  background-color: #FCD535; /* Amarelo Binance */
-  color: #111; /* Texto preto no botão */
+  padding: 1.6rem; /* 16px */
+  background-color: #FCD535;
+  color: #111;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: 18px; /* 1.1em @ 16px = 17.6px */
   font-weight: bold;
   text-transform: uppercase;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 10px; /* Espaçamento após o checkbox */
+  margin-top: 10px; /* 10px */
 }
 
 .botao-primario:hover {
-  background-color: #E6C22D; /* Amarelo um pouco mais escuro no hover */
-  transform: translateY(-1px); /* Pequeno efeito de elevação */
+  background-color: #E6C22D;
+  transform: translateY(-1px);
 }
 
-/* Estilo para links ou botões secundários */
 .link-secundario {
   color: #848E9C;
-  font-size: 1em;
+  font-size: 1em; /* 1em @ 16px = 16px */
   text-decoration: none;
-  margin-top: 20px;
+  margin-top: 20px; /* 20px */
   display: inline;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .link-secundario:hover {
@@ -116,9 +110,9 @@
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 30px 0;
+  margin: 3rem 0; /* 30px */
   color: #848E9C;
-  font-size: 0.85em;
+  font-size: 1.4rem; /* 0.85em @ 16px = 13.6px */
 }
 
 .divisor::before,
@@ -128,33 +122,27 @@
   border-bottom: 1px solid #333;
 }
 
-.divisor:not(:empty)::before {
-  margin-right: .5em;
-}
+.divisor:not(:empty)::before { margin-right: .5em; }
+.divisor:not(:empty)::after { margin-left: .5em; }
 
-.divisor:not(:empty)::after {
-  margin-left: .5em;
-}
-
-/* Estilos para os botões de redes sociais */
 .botoes-sociais {
   display: flex;
-  flex-direction: column; /* Um botão abaixo do outro */
-  gap: 15px; /* Espaço entre os botões */
-  margin-top: 30px;
+  flex-direction: column;
+  gap: 1.5rem; /* 15px */
+  margin-top: 3rem; /* 30px */
 }
 
 .botao-social {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 1.2rem; /* 12px */
   background-color: #2B2B2B;
   border: 1px solid #333;
   border-radius: 4px;
   color: #EAECEF;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.6rem; /* 1em @ 16px = 16px */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -163,24 +151,21 @@
   border-color: #FCD535;
 }
 
-
-
+/* Nota: essas margens "mágicas" ainda são uma má prática,
+   mas convertidas para rem */
 .icone-social {
-  margin-right: 80px; /* Aumenta um pouco o espaço entre o ícone e o texto */
-  margin-left: -90px;
-
+  margin-right: 45px; 
+  margin-left: -60px;
 }
-
-
 .apple-icone {
   color: #EAECEF;
-  margin-right: 80px;
-  margin-left: -105px;
+  margin-right: 45px; 
+  margin-left: -75px;
 }
 
 .texto-rodapé {
-  margin-top: 30px;
-  font-size: 0.85em;
+  margin-top: 3rem; /* 30px */
+  font-size: 1.4rem; /* 0.85em @ 16px = 13.6px */
   color: #848E9C;
 }
 
@@ -188,7 +173,17 @@
   color: #FCD535;
   text-decoration: none;
 }
-
 .texto-rodapé a:hover {
   text-decoration: underline;
 }
+
+/* ESTILO DA NOVA MENSAGEM DE ERRO */
+.mensagem-erro {
+  color: #F87171; /* Um vermelho claro para o texto */
+    
+  border-radius: 4px;
+  font-size: 1.2em; /* 14px */
+  font-weight: 600;
+  text-align: center;
+}
+

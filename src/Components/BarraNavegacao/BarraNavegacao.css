@@ -1,6 +1,6 @@
 .barra-navegacao {
   width: 100%;
-  padding: 15px 5%; /* 5% de padding nas laterais */
+  padding: 6px 5%; /* 5% de padding nas laterais */
   background-color: #111; /* Fundo preto para combinar */
   display: flex;
   justify-content: space-between; /* Mágica do layout: um lado vs outro */
@@ -12,7 +12,7 @@
 /* 1. Estilo do Logo (antigo logo-pryce) */
 .logo-navbar {
   color: #FCD535; /* Dourado */
-  font-size: 1.8em;
+  font-size: 2.2em;
   font-weight: bold;
   text-decoration: none;
 }
@@ -26,7 +26,7 @@
 .links-navegacao a {
   color: #EAECEF; /* Texto claro */
   text-decoration: none;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: 300;
   padding-bottom: 5px; /* Espaço para o sublinhado */
   border-bottom: 2px solid transparent; /* Borda invisível para não pular */
