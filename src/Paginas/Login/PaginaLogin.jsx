@@ -27,14 +27,14 @@ function PaginaLogin() {
       {/* MUDANÇA AQUI: O logo agora está FORA da caixa.
         Mudei a classe para 'logo-global' para refletir isso.
       */}
-      <span className="logo-pryce">PRYCE</span>
+    
 
       {/* A caixa de login começa aqui */}
       <div className="login-caixa">
         
         {/* O logo não está mais aqui dentro */}
 
-        <h2>Bem-vindo ao <span className="logo-bem">PRYCE</span></h2> {/* Título principal */}
+        <h2>Bem-vindo à <span className="logo-bem">PRYCE</span></h2> {/* Título principal */}
         
         <form onSubmit={aoSubmeterFormulario}>
           {/* ... (o resto do seu formulário continua igual) ... */}
@@ -70,7 +70,7 @@ function PaginaLogin() {
               onChange={(e) => setTermosAceitos(e.target.checked)}
             />
             <label htmlFor="checkbox-termos">              
-              <a href="#" className="link-secundario">Política de Privacidade</a> PRYCE.
+              Aceito os termos de <a href="#" className="link-secundario">Política de Privacidade</a> PRYCE.
             </label>
           </div>
 
@@ -114,7 +114,7 @@ function PaginaLogin() {
         </div>
 
         <p className="texto-rodapé">
-          <a href="#" className="link-secundario">Cadastre-se</a> como empresa.
+          <a href="#" className="link-secundario">CADASTRE-SE</a> COMO EMPRESA.
         </p>
 
       </div>

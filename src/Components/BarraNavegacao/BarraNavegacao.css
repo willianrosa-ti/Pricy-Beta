@@ -1,0 +1,45 @@
+.barra-navegacao {
+  width: 100%;
+  padding: 15px 5%; /* 5% de padding nas laterais */
+  background-color: #111; /* Fundo preto para combinar */
+  display: flex;
+  justify-content: space-between; /* Mágica do layout: um lado vs outro */
+  align-items: center;
+  box-sizing: border-box; /* Para o padding não quebrar o layout */
+  border-bottom: 1px solid #333; /* Linha sutil de separação */
+}
+
+/* 1. Estilo do Logo (antigo logo-pryce) */
+.logo-navbar {
+  color: #FCD535; /* Dourado */
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* 2. Estilo dos Links da Direita */
+.links-navegacao {
+  display: flex;
+  gap: 30px; /* Espaço entre os links */
+}
+
+.links-navegacao a {
+  color: #EAECEF; /* Texto claro */
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: 300;
+  padding-bottom: 5px; /* Espaço para o sublinhado */
+  border-bottom: 2px solid transparent; /* Borda invisível para não pular */
+  transition: color 0.3s ease, border-color 0.3s ease;
+  padding-top: 5px;
+}
+
+.links-navegacao a:hover {
+  color: #FCD535; /* Dourado no hover */
+}
+
+/* 3. Estilo do link ATIVO (O sublinhado que você pediu) */
+.links-navegacao a.link-ativo {
+  color: #FCD535;
+  border-bottom: 2px solid #FCD535;
+}

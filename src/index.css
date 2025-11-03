@@ -4,11 +4,14 @@ body {
   color: #f4f4f4; 
   font-family: 'Open Sans', Arial, sans-serif;
   margin: 0;
-  padding: 20px; /* Adiciona um respiro nas bordas */
-  box-sizing: border-box; 
+  padding: 0;
+  /* Remova 'display: flex' e suas propriedades daqui */
+}
+
+/* Esta classe vai centralizar o CONTEÚDO da página */
+.container-pagina {
   display: flex;
-  flex-direction: column; /* <<< ESSA É A MUDANÇA PRINCIPAL */
-  justify-content: center; 
-  align-items: center; 
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center; /* Centraliza a caixa de login horizontalmente */
+  padding-top: 60px; /* Espaço para respirar abaixo da navbar */
 }

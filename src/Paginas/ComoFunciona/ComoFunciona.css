@@ -1,0 +1,10 @@
+/* Estilos básicos para começar */
+.container-como-funciona {
+  color: #EAECEF; /* Texto claro */
+  text-align: center;
+  padding: 20px;
+}
+
+.container-como-funciona h1 {
+  color: #FCD535; /* Dourado */
+}
