@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PaginaLogin.css';
+import { Link } from 'react-router-dom';
 
 function PaginaLogin() {
   const [email, setEmail] = useState('');
@@ -135,7 +136,7 @@ function PaginaLogin() {
       </div>
 
       <p className="texto-rodapé">
-        <a href="#" className="link-secundario">CADASTRE-SE</a> COMO EMPRESA.
+        <Link to="/cadastro" className="link-secundario">CADASTRE-SE</Link> COMO EMPRESA.
       </p>
 
     </div>

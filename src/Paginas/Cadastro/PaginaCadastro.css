@@ -1,0 +1,65 @@
+/* src/paginas/Cadastro/PaginaCadastro.css */
+
+/* IMPORTANTE: Inclua aqui todo o CSS que estava no PaginaLogin.css */
+/* ... (Seu código PaginaLogin.css - rem - deve ser colado aqui) ... */
+/* ... (Incluindo: .login-caixa, .form-grupo, .mensagem-erro, .botao-primario, etc.) ... */
+
+
+/* --- ESTILOS ESPECÍFICOS DO CADASTRO --- */
+
+/* Radio Buttons para Pessoa Física/Jurídica */
+.form-tipo-documento {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-tipo-documento .radio-grupo {
+    display: flex;
+    gap: 3rem; /* Espaçamento entre os radios */
+    color: #EAECEF;
+    font-size: 1.4rem;
+}
+
+.form-tipo-documento .radio-grupo label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0; /* Remove margem do label do grupo */
+}
+
+.form-tipo-documento .radio-grupo input[type="radio"] {
+    margin-right: 0.8rem;
+    cursor: pointer;
+    /* Adicione estilos para customizar o radio button se necessário */
+}
+
+
+/* Input de Telefone e Seletor de País */
+.input-telefone-grupo {
+    display: flex;
+    gap: 1rem;
+}
+
+.input-telefone-grupo .seletor-pais {
+    /* Estilo do select (país) */
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+    background-color: #2B2B2B;
+    border: 1px solid #2B2B2B;
+    border-radius: 4px;
+    color: #EAECEF;
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 16rem; /* Largura fixa para o seletor de país */
+    transition: border-color 0.3s ease;
+}
+
+.input-telefone-grupo .seletor-pais:focus {
+    border-color: #FCD535;
+    outline: none;
+}
+
+.input-telefone-grupo input[type="tel"] {
+    /* O restante do campo de telefone */
+    flex-grow: 1; /* Ocupa o espaço restante */
+}

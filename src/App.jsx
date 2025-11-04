@@ -6,9 +6,10 @@ import { Routes, Route } from 'react-router-dom';
 import BarraNavegacao from './components/BarraNavegacao/BarraNavegacao';
 
 
-import PaginaLogin from './paginas/Login/PaginaLogin';
-import PaginaSobreNos from './paginas/SobreNos/SobreNos';
-import PaginaComoFunciona from './paginas/ComoFunciona/ComoFunciona';
+import PaginaLogin from './Paginas/Login/PaginaLogin';
+import PaginaSobreNos from './Paginas/SobreNos/SobreNos';
+import PaginaComoFunciona from './Paginas/ComoFunciona/ComoFunciona';
+import PaginaCadastro from './Paginas/Cadastro/PaginaCadastro';
 
 import './App.css'; 
 
@@ -23,6 +24,8 @@ function App() {
         <Routes>
           {/* Rota para a página de Login */}
           <Route path="/login" element={<PaginaLogin />} />
+
+          <Route path="/cadastro" element={<PaginaCadastro />} />
 
           {/* Rota para "Sobre Nós" */}
           <Route path="/sobre-nos" element={<PaginaSobreNos />} />
