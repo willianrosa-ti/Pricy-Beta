@@ -1,11 +1,12 @@
 // src/paginas/Cadastro/PaginaCadastro.jsx
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './PaginaCadastro.css';
+import { Link, useNavigate } from 'react-router-dom'; // 1. useNavigate está aqui
+import './PaginaCadastro.css'; 
+
+const API_URL = 'http://localhost:5275';
 
 const OPCOES_PAIS = [
-    // ... (Seu array de países continua aqui) ...
     { nome: 'Brasil', codigo: '+55', bandeira: '🇧🇷' },
     { nome: 'Estados Unidos', codigo: '+1', bandeira: '🇺🇸' },
     { nome: 'Canadá', codigo: '+1', bandeira: '🇨🇦' },
@@ -17,7 +18,7 @@ const OPCOES_PAIS = [
 ];
 
 function PaginaCadastro() {
-    // ESTADOS ATUALIZADOS
+    // ESTADOS
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [email, setEmail] = useState('');
     const [tipoDocumento, setTipoDocumento] = useState('fisica');
@@ -25,54 +26,79 @@ function PaginaCadastro() {
     const [dataNascimento, setDataNascimento] = useState('');
     const [telefone, setTelefone] = useState('');
     const [pais, setPais] = useState(OPCOES_PAIS[0]);
-    
-    const [login, setLogin] = useState(''); // <<< NOVO ESTADO PARA O LOGIN
-    
+    const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmaSenha, setConfirmaSenha] = useState('');
     const [termosAceitos, setTermosAceitos] = useState(false);
+    
     const [erro, setErro] = useState('');
+    const [isLoading, setIsLoading] = useState(false); 
+    
+    const navigate = useNavigate(); // Hook para redirecionar
 
-    const aoSubmeterCadastro = (evento) => {
+    // FUNÇÃO DE SUBMISSÃO (AGORA ASSÍNCRONA)
+    const aoSubmeterCadastro = async (evento) => {
         evento.preventDefault();
         setErro('');
-
-        // --- VALIDAÇÕES SIMPLES ---
-        if (!login.trim()) {
-            setErro('O campo Login é obrigatório.');
-            return;
-        }
         
         if (senha !== confirmaSenha) {
             setErro('A senha e a confirmação de senha não coincidem.');
             return;
         }
-
         if (!termosAceitos) {
             setErro('Você deve aceitar os Termos de Serviço.');
             return;
         }
 
-        // Simulação de envio para a API
-        console.log('Dados prontos para API:', {
-            nomeCompleto,
-            email,
-            tipoDocumento,
-            documento,
-            dataNascimento,
-            telefoneCompleto: `${pais.codigo} ${telefone}`,
-            login, // <<< NOVO DADO
-            senha,
-            termosAceitos
-        });
+        setIsLoading(true);
+
+        const dadosCadastro = {
+            NomeCompleto: nomeCompleto,
+            Email: email,
+            Senha: senha,
+            Login: login,
+            Documento: documento,
+            TipoPessoa: tipoDocumento.toUpperCase(), // 'fisica' -> 'FISICA'
+            DataNascimento: dataNascimento,
+            NumeroCelular: `${pais.codigo} ${telefone}`
+        };
+
+        try {
+            const response = await fetch(`${API_URL}/api/usuarios`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dadosCadastro),
+            });
+
+            if (response.status === 201) { // 201 Created (Sucesso!)
+                alert('Cadastro realizado com sucesso!');
+                navigate('/login'); // Redireciona para o login
+            
+            } else {
+                const erroApi = await response.json();
+                // Tenta pegar erros de validação do ModelState (se houver)
+                if (erroApi.errors) {
+                    const primeiraMsgErro = Object.values(erroApi.errors)[0][0];
+                    setErro(primeiraMsgErro);
+                } else {
+                    // Pega erros do Conflict (ex: "E-mail já cadastrado.")
+                    setErro(erroApi.message || 'Erro ao cadastrar. Tente novamente.');
+                }
+            }
+
+        } catch (error) {
+            console.error('Erro de conexão:', error);
+            setErro('Não foi possível conectar ao servidor. Tente mais tarde.');
         
-        alert('Cadastro efetuado! (Pronto para conectar à API)');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    // ... (handleTelefoneChange e handleChange continuam iguais) ...
     const handleTelefoneChange = (e) => {
-        const input = e.target.value.replace(/\D/g, '');
-        
+        const input = e.target.value.replace(/\D/g, ''); 
         let formatado = input;
         if (input.length > 2) {
             formatado = `(${input.substring(0, 2)}) ${input.substring(2, 7)}${input.length > 7 ? '-' + input.substring(7, 11) : ''}`;
@@ -89,19 +115,20 @@ function PaginaCadastro() {
 
     return (
         <div className="login-caixa">
-            <h2>Cadastro <span className="logo-bem">PRICY</span></h2>
+            <h2>Cadastre-se na <span className="logo-bem">PRYCE</span></h2>
 
             <form onSubmit={aoSubmeterCadastro}>
-                {/* ... (Campos Nome, Email, Documento, Data Nasc. e Telefone continuam aqui) ... */}
                 
+                {/* --- CAMPOS QUE FALTAVAM --- */}
+
                 <div className="form-grupo">
                     <label htmlFor="nome-completo">Nome Completo:</label>
-                    <input type="text" id="nome-completo" value={nomeCompleto} onChange={handleChange(setNomeCompleto)} required />
+                    <input type="text" id="nome-completo" value={nomeCompleto} onChange={handleChange(setNomeCompleto)} required disabled={isLoading} />
                 </div>
                 
                 <div className="form-grupo">
                     <label htmlFor="email">E-mail:</label>
-                    <input type="email" id="email" value={email} onChange={handleChange(setEmail)} required />
+                    <input type="email" id="email" value={email} onChange={handleChange(setEmail)} required disabled={isLoading} />
                 </div>
 
                 <div className="form-grupo form-tipo-documento">
@@ -113,6 +140,7 @@ function PaginaCadastro() {
                                 value="fisica"
                                 checked={tipoDocumento === 'fisica'}
                                 onChange={handleChange(setTipoDocumento)}
+                                disabled={isLoading}
                             />
                             Pessoa Física
                         </label>
@@ -122,6 +150,7 @@ function PaginaCadastro() {
                                 value="juridica"
                                 checked={tipoDocumento === 'juridica'}
                                 onChange={handleChange(setTipoDocumento)}
+                                disabled={isLoading}
                             />
                             Pessoa Jurídica
                         </label>
@@ -137,6 +166,7 @@ function PaginaCadastro() {
                         onChange={handleChange(setDocumento)} 
                         maxLength={tipoDocumento === 'fisica' ? 14 : 18}
                         required 
+                        disabled={isLoading}
                     />
                 </div>
 
@@ -148,6 +178,7 @@ function PaginaCadastro() {
                         value={dataNascimento} 
                         onChange={handleChange(setDataNascimento)} 
                         required 
+                        disabled={isLoading}
                     />
                 </div>
                 
@@ -162,47 +193,47 @@ function PaginaCadastro() {
                                 setPais(novoPais);
                                 if (erro) setErro('');
                             }}
+                            disabled={isLoading}
                         >
                             {OPCOES_PAIS.map(p => (
-                                <option key={p.codigo} value={p.codigo}>
+                                <option key={p.nome} value={p.codigo}> 
                                     {p.bandeira} {p.nome} ({p.codigo})
                                 </option>
                             ))}
                         </select>
                         <input
                             type="tel"
-                            placeholder="(99) 99999-9999"
+                            placeholder="(21) 99999-9999"
                             value={telefone}
                             onChange={handleTelefoneChange}
                             required
+                            disabled={isLoading}
                         />
                     </div>
                 </div>
+                
+                {/* --- FIM DOS CAMPOS QUE FALTAVAM --- */}
 
-                {/* <<< NOVO CAMPO: LOGIN/NOME DE USUÁRIO */}
+
                 <div className="form-grupo">
-                    <label htmlFor="login">Login:</label>
-                    <input type="text" id="login" value={login} onChange={handleChange(setLogin)} required />
+                    <label htmlFor="login">Login/Nome de Usuário:</label>
+                    <input type="text" id="login" value={login} onChange={handleChange(setLogin)} required disabled={isLoading} />
                 </div>
                 
-                {/* SENHA */}
                 <div className="form-grupo">
                     <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" value={senha} onChange={handleChange(setSenha)} required />
+                    <input type="password" id="senha" value={senha} onChange={handleChange(setSenha)} required disabled={isLoading} />
                 </div>
 
-                {/* CONFIRMAÇÃO DE SENHA */}
                 <div className="form-grupo">
                     <label htmlFor="confirma-senha">Confirme a Senha:</label>
-                    <input type="password" id="confirma-senha" value={confirmaSenha} onChange={handleChange(setConfirmaSenha)} required />
+                    <input type="password" id="confirma-senha" value={confirmaSenha} onChange={handleChange(setConfirmaSenha)} required disabled={isLoading} />
                 </div>
                 
-                {/* ... (Checkbox, Erro e Botão continuam aqui) ... */}
-
                 <div className="form-checkbox">
-                    <input type="checkbox" id="checkbox-termos" checked={termosAceitos} onChange={e => { setTermosAceitos(e.target.checked); if (erro) setErro(''); }}/>
+                    <input type="checkbox" id="checkbox-termos" checked={termosAceitos} onChange={e => { setTermosAceitos(e.target.checked); if (erro) setErro(''); }} disabled={isLoading} />
                     <label htmlFor="checkbox-termos">
-                        Eu li e concordo com os Termos de Serviço <a href="#" className="link-secundario"></a>da PRYCE.
+                        Eu li e concordo com os Termos de Serviço e a <a href="#" className="link-secundario">Política de Privacidade</a> da PRYCE.
                     </label>
                 </div>
 
@@ -210,8 +241,8 @@ function PaginaCadastro() {
                     <p className="mensagem-erro">{erro}</p>
                 )}
 
-                <button type="submit" className="botao-primario">
-                    Cadastrar
+                <button type="submit" className="botao-primario" disabled={isLoading}>
+                    {isLoading ? 'Cadastrando...' : 'Cadastrar'}
                 </button>
             </form>
 

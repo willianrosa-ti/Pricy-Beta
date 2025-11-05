@@ -97,6 +97,13 @@ function PaginaLogin() {
         <button type="submit" className="botao-primario">
           Continuar
         </button>
+
+        
+        <div className="link-extra-container">
+        <Link to="/esqueci-senha" className="link-secundario link-esqueci">
+            Esqueceu a senha?
+        </Link>
+        </div>
       </form>
 
       <div className="divisor">ou</div>

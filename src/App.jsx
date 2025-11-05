@@ -10,6 +10,8 @@ import PaginaLogin from './Paginas/Login/PaginaLogin';
 import PaginaSobreNos from './Paginas/SobreNos/SobreNos';
 import PaginaComoFunciona from './Paginas/ComoFunciona/ComoFunciona';
 import PaginaCadastro from './Paginas/Cadastro/PaginaCadastro';
+import PaginaEsqueciSenha from './Paginas/EsqueciSenha/PaginaEsqueciSenha';
+import PaginaRedefinirSenha from './Paginas/RedefinirSenha/PaginaRedefinirSenha';
 
 import './App.css'; 
 
@@ -22,19 +24,14 @@ function App() {
       
       <main className="container-pagina">
         <Routes>
-          {/* Rota para a página de Login */}
           <Route path="/login" element={<PaginaLogin />} />
-
           <Route path="/cadastro" element={<PaginaCadastro />} />
+              
+          <Route path="/esqueci-senha" element={<PaginaEsqueciSenha />} />
+          <Route path="/redefinir-senha" element={<PaginaRedefinirSenha />} />
 
-          {/* Rota para "Sobre Nós" */}
           <Route path="/sobre-nos" element={<PaginaSobreNos />} />
-          
-          {/* Rota para "Como Funciona" */}
           <Route path="/como-funciona" element={<PaginaComoFunciona />} />
-
-          {/* Rota Padrão (quando acessa "/") */}
-          {/* Decida qual será sua Home. Vou manter o Login por enquanto: */}
           <Route path="/" element={<PaginaLogin />} /> 
         </Routes>
       </main>

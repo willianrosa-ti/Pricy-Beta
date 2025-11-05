@@ -1,0 +1,25 @@
+
+.mensagem-sucesso {
+  /* Cores */
+  color: #6EE7B7; /* Um verde claro */
+  background-color: rgba(110, 231, 183, 0.1); /* Fundo verde suave */
+  border: 1px solid #6EE7B7; /* Borda verde */
+
+  /* Espaçamento (usando REM) */
+  padding: 1.2rem; /* 12px */
+  margin-bottom: 2rem; /* 20px */
+  
+  /* Outros */
+  border-radius: 4px;
+  font-size: 1.4rem; /* 14px */
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Texto de instrução simples */
+.texto-instrucao {
+  color: #848E9C; /* cinza */
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}

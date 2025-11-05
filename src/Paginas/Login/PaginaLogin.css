@@ -187,3 +187,15 @@
   text-align: center;
 }
 
+
+.link-extra-container {
+  text-align: center;
+  margin-bottom: 2rem; /* Espaço antes do checkbox */
+  margin-top: 1rem; /* Puxa para mais perto do campo de senha */
+}
+
+.link-secundario.link-esqueci {
+  font-size: 1.3rem; /* Um pouco menor */
+  margin-top: 0; /* Reseta margem */
+}
+
