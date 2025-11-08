@@ -1,7 +1,7 @@
 // src/paginas/Cadastro/PaginaCadastro.jsx
 
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // 1. useNavigate está aqui
+import { Link, useNavigate } from 'react-router-dom';
 import './PaginaCadastro.css'; 
 
 const API_URL = 'http://localhost:5275';
@@ -30,16 +30,19 @@ function PaginaCadastro() {
     const [senha, setSenha] = useState('');
     const [confirmaSenha, setConfirmaSenha] = useState('');
     const [termosAceitos, setTermosAceitos] = useState(false);
-    
+    const [sucesso, setSucesso] = useState(''); // Mantido, embora não seja mais usado no fluxo principal
     const [erro, setErro] = useState('');
     const [isLoading, setIsLoading] = useState(false); 
     
     const navigate = useNavigate(); // Hook para redirecionar
 
-    // FUNÇÃO DE SUBMISSÃO (AGORA ASSÍNCRONA)
+    // -----------------------------------------------------------------
+    // --- FUNÇÃO DE SUBMISSÃO (CORRIGIDA PARA O FLUXO DE CÓDIGO) ---
+    // -----------------------------------------------------------------
     const aoSubmeterCadastro = async (evento) => {
         evento.preventDefault();
         setErro('');
+        setSucesso(''); // Limpa o sucesso
         
         if (senha !== confirmaSenha) {
             setErro('A senha e a confirmação de senha não coincidem.');
@@ -54,7 +57,7 @@ function PaginaCadastro() {
 
         const dadosCadastro = {
             NomeCompleto: nomeCompleto,
-            Email: email,
+            Email: email, // O e-mail que será enviado para a próxima página
             Senha: senha,
             Login: login,
             Documento: documento,
@@ -72,18 +75,24 @@ function PaginaCadastro() {
                 body: JSON.stringify(dadosCadastro),
             });
 
+            // 1. LEIA A RESPOSTA (JSON) DA API PRIMEIRO
+            const data = await response.json();
+
             if (response.status === 201) { // 201 Created (Sucesso!)
-                alert('Cadastro realizado com sucesso!');
-                navigate('/login'); // Redireciona para o login
+                
+                // 2. (MUDANÇA CRÍTICA)
+                // Em vez de mostrar uma mensagem, redirecionamos para a página
+                // de verificação, passando o e-mail na URL.
+                navigate(`/verificar-codigo?email=${encodeURIComponent(email)}`);
             
             } else {
-                const erroApi = await response.json();
-                // Tenta pegar erros de validação do ModelState (se houver)
+                // 3. 'data' AGORA CONTÉM AS INFORMAÇÕES DE ERRO
+                const erroApi = data; 
+                
                 if (erroApi.errors) {
                     const primeiraMsgErro = Object.values(erroApi.errors)[0][0];
                     setErro(primeiraMsgErro);
                 } else {
-                    // Pega erros do Conflict (ex: "E-mail já cadastrado.")
                     setErro(erroApi.message || 'Erro ao cadastrar. Tente novamente.');
                 }
             }
@@ -96,6 +105,9 @@ function PaginaCadastro() {
             setIsLoading(false);
         }
     };
+    // -----------------------------------------------------------------
+    // --- FIM DA FUNÇÃO CORRIGIDA ---
+    // -----------------------------------------------------------------
 
     const handleTelefoneChange = (e) => {
         const input = e.target.value.replace(/\D/g, ''); 
@@ -110,6 +122,7 @@ function PaginaCadastro() {
 
     const handleChange = (setter) => (e) => {
         if (erro) setErro('');
+        if (sucesso) setSucesso(''); // Limpa o sucesso ao digitar
         setter(e.target.value);
     };
 
@@ -119,7 +132,7 @@ function PaginaCadastro() {
 
             <form onSubmit={aoSubmeterCadastro}>
                 
-                {/* --- CAMPOS QUE FALTAVAM --- */}
+                {/* --- CAMPOS --- */}
 
                 <div className="form-grupo">
                     <label htmlFor="nome-completo">Nome Completo:</label>
@@ -192,6 +205,7 @@ function PaginaCadastro() {
                                 const novoPais = OPCOES_PAIS.find(p => p.codigo === e.target.value);
                                 setPais(novoPais);
                                 if (erro) setErro('');
+                                if (sucesso) setSucesso('');
                             }}
                             disabled={isLoading}
                         >
@@ -212,7 +226,7 @@ function PaginaCadastro() {
                     </div>
                 </div>
                 
-                {/* --- FIM DOS CAMPOS QUE FALTAVAM --- */}
+                {/* --- FIM DOS CAMPOS --- */}
 
 
                 <div className="form-grupo">
@@ -231,7 +245,7 @@ function PaginaCadastro() {
                 </div>
                 
                 <div className="form-checkbox">
-                    <input type="checkbox" id="checkbox-termos" checked={termosAceitos} onChange={e => { setTermosAceitos(e.target.checked); if (erro) setErro(''); }} disabled={isLoading} />
+                    <input type="checkbox" id="checkbox-termos" checked={termosAceitos} onChange={e => { setTermosAceitos(e.target.checked); if (erro) setErro(''); if (sucesso) setSucesso(''); }} disabled={isLoading} />
                     <label htmlFor="checkbox-termos">
                         Eu li e concordo com os Termos de Serviço e a <a href="#" className="link-secundario">Política de Privacidade</a> da PRYCE.
                     </label>
@@ -241,7 +255,12 @@ function PaginaCadastro() {
                     <p className="mensagem-erro">{erro}</p>
                 )}
 
-                <button type="submit" className="botao-primario" disabled={isLoading}>
+                {/* Esta mensagem (sucesso) não será mais usada aqui, mas pode deixar */ }
+                {sucesso && (
+                    <p className="mensagem-sucesso">{sucesso}</p>
+                )}
+
+                <button type="submit" className="botao-primario" disabled={isLoading || sucesso}>
                     {isLoading ? 'Cadastrando...' : 'Cadastrar'}
                 </button>
             </form>

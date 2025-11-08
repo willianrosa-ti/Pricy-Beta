@@ -1,0 +1,111 @@
+/* src/components/Sidebar/Sidebar.css */
+/* Baseado em 1rem = 10px */
+
+.sidebar {
+  width: 26rem; /* 260px */
+  height: 100vh; /* Altura total da tela */
+  background-color: #1c1c1c; /* Cor de fundo (cinza escuro) */
+  border-right: 1px solid #333; /* Borda sutil */
+  position: fixed; /* Fica preso à esquerda */
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column; /* Organiza os itens verticalmente */
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+}
+
+/* --- Perfil do Usuário --- */
+.sidebar-perfil {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #333;
+  margin-bottom: 2rem;
+}
+
+.perfil-avatar {
+  width: 6rem; /* 60px */
+  height: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #FCD535;
+}
+
+.perfil-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-nome {
+  color: #EAECEF;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.perfil-uid {
+  color: #848E9C;
+  font-size: 1.3rem;
+}
+
+/* --- Links de Navegação --- */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Ocupa o espaço entre o perfil e o rodapé */
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.8rem;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.4rem 1.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #B7BDC6; /* Cinza claro (links inativos) */
+  font-size: 1.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: #2B2B2B;
+  color: #EAECEF;
+}
+
+/* Link Ativo (usando o 'active' do NavLink) */
+.sidebar-nav a.active {
+  background-color: #FCD535;
+  color: #111; /* Preto */
+  font-weight: 600;
+}
+
+/* --- Rodapé (Logout) --- */
+.sidebar-footer {
+  margin-top: auto; /* Empurra o rodapé para baixo */
+}
+
+.botao-logout {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: #2B2B2B;
+  color: #EAECEF;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-logout:hover {
+  background-color: #383838;
+  border-color: #FF4D4D; /* Vermelho no hover do logout */
+  color: #FF4D4D;
+}

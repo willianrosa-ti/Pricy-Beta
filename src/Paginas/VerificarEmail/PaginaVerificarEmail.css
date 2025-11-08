@@ -1,0 +1,103 @@
+/* src/Paginas/VerificarEmail/PaginaVerificarEmail.css */
+
+/* Reutilizando a caixa base do login */
+.email-verificacao-caixa {
+    text-align: center;
+    padding: 40px;
+    /* Ajustes específicos */
+    max-width: 500px; 
+}
+
+.email-verificacao-caixa h3 {
+    margin-top: 15px;
+    font-size: 1.8rem;
+    color: #EAECEF;
+}
+
+.email-verificacao-caixa p {
+    color: #848E9C;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+/* Ícones de feedback */
+.icone-loader, .icone-sucesso, .icone-erro {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.icone-loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.texto-sucesso {
+    color: #6EE7B7; /* Verde */
+}
+
+.texto-erro {
+    color: #F87171; /* Vermelho */
+}
+
+.link-login-verificacao {
+    width: auto; /* Deixa o botão mais compacto */
+    padding: 1rem 3rem;
+    text-transform: none; /* Não forçar CAPS */
+    text-decoration: none; /* Para o Link do React */
+    display: inline-block;
+}
+
+.link-secundario-cadastro {
+    background-color: #2B2B2B;
+    color: #FCD535;
+    border: 1px solid #333;
+    font-weight: normal;
+}
+.link-secundario-cadastro:hover {
+    background-color: #383838;
+}
+
+/* ... (Mantenha o seu CSS existente aqui) ... */
+
+/* --- NOVO: ESTILOS DO TIMER --- */
+.contador-tempo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.texto-timer {
+    font-size: 1.4rem;
+    color: #848E9C; /* Cinza suave */
+}
+
+.texto-timer-expirado {
+    font-size: 1.4rem;
+    color: #FF4D4D; /* Vermelho vibrante */
+    font-weight: bold;
+}
+
+.timer-valor {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #FCD535; /* Dourado */
+}
+
+/* Estilo para o grupo de Reenvio */
+.reenviar-grupo {
+    margin-top: 2rem;
+}
+
+.reenviar-grupo .link-secundario {
+    /* Ajuste para que o botão desabilitado fique com cor diferente */
+    cursor: pointer;
+}
+
+.reenviar-grupo .link-secundario:disabled {
+    color: #444; /* Cinza escuro para estado desabilitado */
+    cursor: not-allowed;
+    text-decoration: none;
+}

@@ -1,0 +1,25 @@
+/* src/layouts/Layouts.css */
+
+.layout-privado {
+  display: flex;
+  min-height: 100vh;
+  /* A cor de fundo geral do app já está no index.css (#111) */
+}
+
+.conteudo-principal {
+  flex-grow: 1; /* Faz o conteúdo ocupar todo o espaço restante */
+  
+  /* O 'padding-left' DEVE ser igual à largura do Sidebar (definida em Sidebar.css).
+    Usamos '26rem' (260px) para dar espaço ao menu.
+  */
+  padding-left: 26rem; 
+  
+  /* Padding interno da área de conteúdo */
+  padding-top: 4rem;
+  padding-right: 4rem;
+  padding-bottom: 4rem;
+  
+  /* Garante que o layout não quebre em telas menores */
+  width: calc(100% - 26rem);
+  box-sizing: border-box;
+}

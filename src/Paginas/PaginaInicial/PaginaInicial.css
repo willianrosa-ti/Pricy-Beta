@@ -1,0 +1,215 @@
+/* src/Paginas/PaginaInicial/PaginaInicial.css */
+/* Baseado em 1rem = 10px */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 120rem; /* 1200px */
+  margin: 0 auto;
+}
+
+/* --- Cabeçalho da Página (Painel de Controle) --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.dashboard-header h1 {
+  font-size: 3.2rem;
+  color: #EAECEF;
+  margin: 0;
+}
+
+.info-usuario-header {
+  display: flex;
+  gap: 3rem;
+}
+
+.info-bloco {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.info-bloco span {
+  font-size: 1.4rem;
+  color: #848E9C;
+  margin-bottom: 0.5rem;
+}
+
+.info-bloco strong {
+  font-size: 1.6rem;
+  color: #EAECEF;
+  font-weight: 600;
+}
+
+/* --- Seções do Dashboard --- */
+.dashboard-secao {
+  margin-bottom: 4rem;
+}
+
+.dashboard-secao h2 {
+  font-size: 2.2rem;
+  color: #EAECEF;
+  margin-bottom: 2rem;
+}
+
+/* --- Grid de Cards --- */
+.dashboard-cards-grid {
+  display: grid;
+  /* Cria 3 colunas de tamanho igual */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 2.5rem;
+}
+
+/* --- Estilo Base dos Cards --- */
+.card-dashboard {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  border: 1px solid #333;
+  padding: 2.5rem;
+  min-height: 20rem; /* Altura mínima */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-etapa {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background-color: #2B2B2B;
+  color: #848E9C;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.card-dashboard h3 {
+  font-size: 1.8rem;
+  color: #EAECEF;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto; /* Empurra o status para baixo */
+  font-size: 1.4rem;
+}
+.status-icone {
+  font-size: 1.8rem;
+}
+
+/* Card 1: Concluído */
+.card-concluido .card-status {
+  color: #6EE7B7; /* Verde */
+}
+
+/* Card 2: Ativo (Destaque) */
+.card-ativo {
+  background-color: #FCD535;
+  border-color: #FCD535;
+  color: #111; /* Texto escuro */
+}
+.card-ativo .card-etapa {
+  background-color: rgba(0,0,0,0.1);
+  color: #111;
+}
+.card-ativo h3 {
+  color: #111;
+}
+.card-ativo p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111;
+}
+.card-progresso {
+  font-size: 1.3rem;
+  color: #111;
+  opacity: 0.8;
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+}
+.botao-card-ativo {
+  background-color: #111;
+  color: #FCD535;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.botao-card-ativo:hover {
+  opacity: 0.8;
+}
+
+
+/* Card 3: Pendente */
+.card-pendente .card-destaque-pendente {
+  font-size: 1.6rem;
+  color: #FCD535;
+  font-weight: bold;
+}
+.card-pendente .card-status {
+  color: #848E9C; /* Cinza */
+}
+
+/* Card Saldo */
+.card-saldo {
+  background-color: #2B2B2B; /* Um pouco mais claro */
+}
+.card-saldo h3 {
+  font-size: 3.6rem;
+  color: #EAECEF;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.card-saldo .saldo-moeda {
+  font-size: 2rem;
+  color: #848E9C;
+  font-weight: 500;
+}
+.card-saldo p {
+  font-size: 1.6rem;
+  color: #848E9C;
+  margin-top: 0;
+}
+.saldo-botoes {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.botao-saldo {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.botao-saldo:first-child {
+  background-color: #FCD535;
+  color: #111;
+  border: none;
+}
+.botao-saldo.botao-secundario {
+  background-color: transparent;
+  color: #EAECEF;
+  border: 1px solid #333;
+}
+.botao-saldo:hover {
+  opacity: 0.8;
+}
